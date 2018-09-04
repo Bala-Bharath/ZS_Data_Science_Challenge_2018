@@ -56,27 +56,7 @@ model3 = XGBRegressor(n_estimators=100,
                       colsample_bytree=1,
                       booster='dart',
                       )
-#model3.fit(x_train, y_train)
 model3.fit(x, y)
-
-#print('rf:')
-#pred1 =  model1.predict(x_test)
-#print_scores(y_test, pred1)
-#
-#print('gb:')
-#pred2 =  model2.predict(x_test)
-#print_scores(y_test, pred2)
-#
-#print('xgb:')
-#pred4 =  model3.predict(x_test)
-#print_scores(y_test, pred4)
-#
-#print('ensemble:')
-#pred = pred1  + pred2 + pred4
-#pred /= 3
-#print(r2_score(y_test, pred))
-#print(util.SMAPE(y_test, pred))
-
 
 pred1 =  model1.predict(testx)
 pred2 =  model2.predict(testx)
@@ -84,23 +64,7 @@ pred3 =  model3.predict(testx)
 pred = pred1 + pred2  + pred3
 pred /= 3
 
-
 test_merge['Sales'] = pred
 util.convert_from_usd(test_merge, columns=['Sales'])
 test_merge[['S_No', 'Year', 'Month', 'Product_ID', 'Country', 'Sales']].to_csv(util.write_dir + 'predictions.csv', 
           index=False)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
